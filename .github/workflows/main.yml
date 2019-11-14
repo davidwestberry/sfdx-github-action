@@ -13,3 +13,7 @@ jobs:
       run: npm install -g sfdx-cli
     - name: check sfdx version
       run: sfdx --version
+    - name: Test Connection
+      with: 
+        SERVER_KEY: ${{ secrets.SFDX_SERVER_KEY }}
+        CLIENT_ID: 3MVG97wqanbUM37IrGKv0LG.6jUZzymv4_6CJULCoKNRWGUkXlAOv18C6tEitRkNV1DqkFjExPUybpJ0E7H0X
