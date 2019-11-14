@@ -3,13 +3,13 @@ name: SFDX Test
 on: [push]
 
 jobs:
-  sfdx_cli_job:
+  test:
     runs-on: ubuntu-latest
-    name: A job to setup SFDX CLI
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-      - uses: ./
-      - name: SFDX action step
-        id: sfdx_setup
-        run: sfdx --version
+    - uses: actions/checkout@v1
+    -name: Use NPM to install SFDX CLI
+     uses: actions/setup-node@v1
+    -name: install sfdx-cli
+     run: npm install -g sfdx-cli
+    -name: sfdx version
+     run: sfdx --version
