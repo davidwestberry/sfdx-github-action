@@ -1,0 +1,5 @@
+name: 'Setup SFDX'
+description: 'Setup the SFDX CLI for Salesforce deployments'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
