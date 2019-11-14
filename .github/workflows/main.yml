@@ -7,9 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    -name: Use NPM to install SFDX CLI
-     uses: actions/setup-node@v1
-    -name: install sfdx-cli
-     run: npm install -g sfdx-cli
-    -name: sfdx version
-     run: sfdx --version
+    - name: Setup Node.js for use with actions
+      uses: actions/setup-node@v1.1.0
+    - name: install sfdx-cli
+      run: npm install -g sfdx-cli
+    - name: check sfdx version
+      run: sfdx --version
