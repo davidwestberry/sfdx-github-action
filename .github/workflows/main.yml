@@ -9,12 +9,12 @@ jobs:
     - uses: actions/checkout@v1
     - name: Setup Node.js for use with actions
       uses: actions/setup-node@v1.1.0
-    - name: install sfdx-cli
-      run: npm install -g sfdx-cli
-    - name: check sfdx version
-      run: sfdx --version
-    - name: create server key file
-      env: 
+    - name: install sfdx-cli and create security key file
+      env:
         SERVER_KEY: ${{ secrets.SFDX_SERVER_KEY }}
-        #CLIENT_ID: 3MVG97wqanbUM37IrGKv0LG.6jUZzymv4_6CJULCoKNRWGUkXlAOv18C6tEitRkNV1DqkFjExPUybpJ0E7H0X
-      run: echo "${SERVER_KEY}" > server.key
+      run: |
+        npm install -g sfdx-cli
+        echo "${SERVER_KEY}" > server.key
+    - name: verify server key file
+      run: echo "$(server.key)"
+#CLIENT_ID: 3MVG97wqanbUM37IrGKv0LG.6jUZzymv4_6CJULCoKNRWGUkXlAOv18C6tEitRkNV1DqkFjExPUybpJ0E7H0X
