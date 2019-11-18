@@ -17,4 +17,7 @@ jobs:
         echo "${SERVER_KEY}" > server.key
     - name: verify server key file
       run: echo "$(<server.key)"
-#CLIENT_ID: 3MVG97wqanbUM37IrGKv0LG.6jUZzymv4_6CJULCoKNRWGUkXlAOv18C6tEitRkNV1DqkFjExPUybpJ0E7H0X
+    - name: authorize org
+      env:
+        CLIENT_ID: 3MVG97wqanbUM37IrGKv0LG.6jUZzymv4_6CJULCoKNRWGUkXlAOv18C6tEitRkNV1DqkFjExPUybpJ0E7H0X
+      run: sfdx force:auth:jwt:grant --clientid ${CLIENT_ID} --jwtkeyfile ./server.key --username jdavidwestberry@gmail.com.cme.sfdev --instanceurl https://test.salesforce.com --setalias cme-uat --setdefaultdevhubusername
