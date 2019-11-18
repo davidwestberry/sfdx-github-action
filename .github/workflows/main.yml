@@ -16,5 +16,5 @@ jobs:
         npm install -g sfdx-cli
         echo "${SERVER_KEY}" > server.key
     - name: verify server key file
-      run: echo "$(server.key)"
+      run: echo "$(<server.key)"
 #CLIENT_ID: 3MVG97wqanbUM37IrGKv0LG.6jUZzymv4_6CJULCoKNRWGUkXlAOv18C6tEitRkNV1DqkFjExPUybpJ0E7H0X
