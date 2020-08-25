@@ -1,0 +1,15 @@
+name: 'Run Local Tests'
+description: 'Run local tests in a Salesforce org'
+inputs:
+  accessToken:
+    description: 'The accessToken that will be used to run the tests'
+    required: true
+  instanceurl:
+    description: 'The instanceurl of the authorized org. This must be set in order to successfully run tests using an access token'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.accessToken }}
+    - ${{ inputs.instanceurl }}

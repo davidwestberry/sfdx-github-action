@@ -1,0 +1,33 @@
+name: 'Authorize an Org'
+description: 'Authorize a Salesforce org and return the accessToken generated'
+inputs:
+  clientid:
+    description: 'The client key from a connected app in the org'
+    required: true
+  username:
+    description: 'The username used to authorize the org'
+    required: true
+  instanceurl:
+    description: 'The instance url used to authorize the org'
+    required: false
+    default: 'https://login.salesforce.com'
+  sfdxalias:
+    description: 'The sfdx alias that will be set to reference the authorized org'
+    required: true
+  certificate:
+    description: 'The contents of the private key for the certificate used for the connected app'
+    required: true
+outputs:
+  accesstoken:
+    description: 'The accessToken obtained when the org is authorized'
+  instanceurl:
+    description: 'The instance url after authorizing the org'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.clientid }}
+    - ${{ inputs.username }}
+    - ${{ inputs.instanceurl }}
+    - ${{ inputs.sfdxalias }}
+    - ${{ inputs.certificate }}

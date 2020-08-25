@@ -1,6 +1,6 @@
 name: SFDX Test
 
-on: workflow_dispatch
+on: [push]
 
 jobs:
   test:
@@ -20,4 +20,6 @@ jobs:
     - name: authorize org
       env:
         CLIENT_ID: ${{ secrets.SFDEV_CLIENT_KEY }}
-      run: sfdx force:auth:jwt:grant --clientid ${CLIENT_ID} --jwtkeyfile ./server.key --username jdavidwestberry@gmail.com.cme.sfdev --instanceurl https://test.salesforce.com --setalias cme-uat --setdefaultdevhubusername
+      run: |
+        echo "CLIENT_ID=${CLIENT_ID}"
+        sfdx force:auth:jwt:grant --clientid ${CLIENT_ID} -f ./server.key --username jdavidwestberry@gmail.com.cme.sfdev --instanceurl https://test.salesforce.com --setalias cme-uat --setdefaultdevhubusername

@@ -1,0 +1,38 @@
+on: [push]
+
+jobs:
+  authorize_org_job:
+    runs-on: ubuntu-latest
+    name: Authorize an Org
+    outputs:
+      accesstoken: ${{ steps.authorizeorg.outputs.accesstoken }}
+      instanceurl: ${{ steps.authorizeorg.outputs.instanceurl }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Authorize Org Action Step
+      id: authorizeorg
+      uses: ./actions/authorize-org
+      with:
+        clientid: ${{ secrets.SFDEV_CLIENT_KEY }}
+        username: 'jdavidwestberry@gmail.com.cme.sfdev'
+        instanceurl: 'https://test.salesforce.com'
+        sfdxalias: 'cme-sfdev'
+        certificate: ${{ secrets.SFDX_SERVER_KEY }}
+    - name: Get the access token
+      run: echo "ACCESS_TOKEN=${{ steps.authorizeorg.outputs.accesstoken }}"
+  run_tests:
+    runs-on: ubuntu-latest
+    needs: authorize_org_job
+    name: Test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Check Inputs
+        run: echo ${{needs.authorize_org_job.outputs.instanceurl}}
+      - name: Run Local Tests
+        id: runtests
+        uses: ./actions/run-tests
+        with:
+          instanceurl: ${{needs.aurthorize_org_job.outputs.instanceurl}}
+          accesstoken: ${{needs.authorize_org_job.outputs.accesstoken}}
