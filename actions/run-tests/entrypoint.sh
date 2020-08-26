@@ -17,7 +17,8 @@ RESULT=$(sfdx force:apex:test:run -c --testlevel RunLocalTests --json -r json -w
 
 OUTCOME=$(echo ${RESULT} | jq -r '.result.summary.outcome')
 echo "OUTCOME=${OUTCOME}"
-if [[ "${OUTCOME}" -eq "Failed" ]]; then
+
+if [[ "${OUTCOME}" == "Failed" ]]; then
     echo "Test failures were reported"
     #echo "${RESULT}"
     echo "${RESULT}" | jq -r '.result.summary'
