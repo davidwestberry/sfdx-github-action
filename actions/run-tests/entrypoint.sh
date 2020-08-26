@@ -19,7 +19,9 @@ OUTCOME=$(echo ${RESULT} | jq -r .result.summary.outcome)
 
 if [[ ${OUTCOME} -eq "Failed" ]]; then
     echo "Test failures were reported"
-    FAILURES=$(echo ${RESULT} | jq -r '[.result.tests[] | select(.Outcome == "CompileFail" or .Outcome == "Fail") | {"test": .FullName, "stackTrace": .StackTrace, "message": .Message}]')
+    echo "${RESULT}"
+    echo "${RESULT}" | jq -r '.result.summary'
+    FAILURES=$(echo "${RESULT}" | jq -r '[.result.tests[] | select(.Outcome == "CompileFail" or .Outcome == "Fail") | {"test": .FullName, "stackTrace": .StackTrace, "message": .Message}]')
     echo ${FAILURES}
     exit 1
 fi
