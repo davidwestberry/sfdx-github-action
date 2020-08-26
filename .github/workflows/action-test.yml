@@ -29,7 +29,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Check Inputs
-        run: echo ${{needs.authorize_org_job.outputs.instanceurl}}
+        run: | 
+          echo 'Instance URL: ${{needs.authorize_org_job.outputs.instanceurl}}'
+          echo 'Access Token: ${{needs.authorize_org_job.outputs.instanceurl}}'
       - name: Run Local Tests
         id: runtests
         uses: ./actions/run-tests
