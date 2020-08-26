@@ -37,4 +37,4 @@ jobs:
         uses: ./actions/run-tests
         with:
           accesstoken: ${{needs.authorize_org_job.outputs.accesstoken}}
-          instanceurl: ${{needs.aurthorize_org_job.outputs.instanceurl}}
+          instanceurl: ${{needs.authorize_org_job.outputs.instanceurl}}
