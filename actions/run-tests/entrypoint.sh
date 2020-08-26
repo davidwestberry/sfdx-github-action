@@ -23,7 +23,7 @@ if [[ "${OUTCOME}" == "Failed" ]]; then
     #echo "${RESULT}"
     echo "${RESULT}" | jq -r '.result.summary'
     FAILURES=$(echo "${RESULT}" | jq -r '[.result.tests[] | select(.Outcome == "CompileFail" or .Outcome == "Fail") | {"test": .FullName, "stackTrace": .StackTrace, "message": .Message}]')
-    echo ${FAILURES}
+    echo ${FAILURES} | jq -r '.[] | [.test, .message] | @csv' | awk -v FS="," 'BEGIN{print "Test\t\t\tMessage";print"============================"}{printf "%s\t\t\t%s%s",$1,$2,ORS}'
     exit 1
 else
     echo "Tests Passed"
