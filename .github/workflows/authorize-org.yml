@@ -1,0 +1,22 @@
+name: Authorize an Org
+
+on: [push]
+
+jobs:
+  authorize-test:
+    runs-on: ubuntu-latest
+    name: Authorize an Org
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Authorize the Org
+      id: authorizeorg
+      uses: ./actions/authorize-org
+      with:
+        clientid: ${{ secrets.SFDEV_CLIENT_KEY }}
+        username: 'jdavidwestberry@gmail.com.cme.sfdev'
+        instanceurl: 'https://test.salesforce.com'
+        sfdxalias: 'cme-sfdev'
+        certificate: ${{ secrets.SFDX_SERVER_KEY }}
+    - name: Get the access token
+      run: echo "ACCESS_TOKEN=${{ steps.authorizeorg.outputs.accesstoken }}"
