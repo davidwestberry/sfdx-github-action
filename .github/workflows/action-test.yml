@@ -31,10 +31,10 @@ jobs:
       - name: Check Inputs
         run: | 
           echo 'Instance URL: ${{needs.authorize_org_job.outputs.instanceurl}}'
-          echo 'Access Token: ${{needs.authorize_org_job.outputs.instanceurl}}'
+          echo 'Access Token: ${{needs.authorize_org_job.outputs.accesstoken}}'
       - name: Run Local Tests
         id: runtests
         uses: ./actions/run-tests
         with:
-          instanceurl: ${{needs.aurthorize_org_job.outputs.instanceurl}}
           accesstoken: ${{needs.authorize_org_job.outputs.accesstoken}}
+          instanceurl: ${{needs.aurthorize_org_job.outputs.instanceurl}}
