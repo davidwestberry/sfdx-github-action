@@ -15,7 +15,7 @@ jobs:
       uses: ./actions/authorize-org
       with:
         clientid: ${{ secrets.SFDEV_CLIENT_KEY }}
-        username: 'jdavidwestberry@gmail.com.cme.uat'
+        username: 'jdavidwestberry@gmail.com.cme.sfdev'
         instanceurl: 'https://test.salesforce.com'
         sfdxalias: 'cme-sfdev'
         certificate: ${{ secrets.SFDX_SERVER_KEY }}
