@@ -24,7 +24,7 @@ outputs:
     description: 'The instance url after authorizing the org'
 runs:
   using: 'docker'
-  image: '../dockerfiles/SFDXDockerfile'
+  image: '../../dockerfiles/SFDXDockerfile'
   args:
     - ${{ inputs.clientid }}
     - ${{ inputs.username }}
