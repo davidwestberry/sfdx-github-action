@@ -11,7 +11,7 @@ jobs:
       uses: actions/checkout@v2
     - name: Authorize the Org
       id: authorizeorg
-      uses: ./actions/authorize-org
+      uses: actions/authorize-org
       with:
         clientid: ${{ secrets.SFDEV_CLIENT_KEY }}
         username: 'jdavidwestberry@gmail.com.cme.sfdev'
