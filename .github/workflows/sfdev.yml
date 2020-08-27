@@ -13,3 +13,10 @@ jobs:
         SOURCE_BRANCH: ${{ github.head_ref }}
         TARGET_BRANCH: ${{ github.base_ref }}
       run: echo "Merging $SOURCE_BRANCH into $TARGET_BRANCH"
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: CD into repo directory
+      run: |
+        cd ${{ GITHUB_WORKSPACE }}
+        ls -al
+        echo "PWD=$(pwd)"
